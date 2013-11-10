@@ -43,7 +43,7 @@ CREATE TABLE roads
         ST_Transform(geom,900913) AS geom,
         road_id, road_name, 
         simple_expand(road_name,(SELECT hstore(array_agg(short_name),array_agg(long_name)) FROM expansions)) AS expanded_name,
-        road_type, status, seg_type,
+        road_type, seg_type,
         gis_start AS start_addr, gis_end AS end_addr, odd_side,
         pg_temp_2.end_type(frm_id) AS from_end, pg_temp_2.end_type(to_id) AS to_end
       FROM roads_new
