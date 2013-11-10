@@ -51,6 +51,7 @@ CREATE TABLE roads
 
 CREATE INDEX ON roads USING gist (geom) WITH (fillfactor=100);
 ANALYZE roads;
+GRANT SELECT ON kelowna.roads TO "www-data";
 COMMIT;
 
 BEGIN;
@@ -65,5 +66,6 @@ CREATE TABLE lanes
 
 CREATE INDEX ON lanes USING gist (geom) WITH (fillfactor=100);
 ANALYZE lanes;
+GRANT SELECT ON kelowna.lanes TO "www-data";
 COMMIT;
 
