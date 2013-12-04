@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE Map[]>
+<Map srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over" maximum-extent="-20037508.34,-20037508.34,20037508.34,20037508.34">
+
+<Parameters>
+  <Parameter name="bounds">-119.59,49.77,-119.32,50.03</Parameter>
+  <Parameter name="center">-119.44,49.89,12</Parameter>
+  <Parameter name="format">png8</Parameter>
+  <Parameter name="minzoom">0</Parameter>
+  <Parameter name="maxzoom">18</Parameter>
+  <Parameter name="scale">1</Parameter>
+  <Parameter name="metatile">2</Parameter>
+  <Parameter name="name"><![CDATA[Kelowna Roads]]></Parameter>
+</Parameters>
+
+<FontSet name="fontset-0">
+  <Font face-name="DejaVu Sans Book"/>
+  <Font face-name="unifont Medium"/>
+</FontSet>
+<Style name="roads-text" filter-mode="first">
+  <Rule>
+    <TextSymbolizer size="9.5" fill="#ffffff" spacing="300" clip="false" placement="line" fontset-name="fontset-0" halo-radius="1.4" halo-fill="#000000" label-position-tolerance="50" dy="-6" ><![CDATA[[expanded_name]]]></TextSymbolizer>
+  </Rule>
+</Style>
+<Style name="roads-fill" filter-mode="first">
+  <Rule>
+    <Filter>([road_type] = 'PRIVATE')</Filter>
+    <LineSymbolizer stroke="#ffffff" stroke-dasharray="6, 3" stroke-width="1.2" clip="false" />
+  </Rule>
+  <Rule>
+    <LineSymbolizer stroke-width="1.2" stroke="#ffffff" clip="false" />
+  </Rule>
+</Style>
+<Style name="roads-casing" filter-mode="first">
+  <Rule>
+    <Filter>([road_type] = 'PRIVATE')</Filter>
+    <LineSymbolizer stroke="#ff0000" stroke-width="3" />
+  </Rule>
+  <Rule>
+    <LineSymbolizer stroke-width="3" stroke="#000000" />
+  </Rule>
+</Style>
+<Layer name="roads"
+  srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+    <StyleName>roads-casing</StyleName>
+    <StyleName>roads-fill</StyleName>
+    <StyleName>roads-text</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+       <Parameter name="table"><![CDATA[kelowna.roads]]></Parameter>
+       <Parameter name="key_field"><![CDATA[]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
+       <Parameter name="extent"><![CDATA[-13312545.1867869,6407529.1473059,-13282583.5910619,6450675.48597843]]></Parameter>
+       <Parameter name="dbname"><![CDATA[road_overlays]]></Parameter>
+       <Parameter name="id"><![CDATA[roads]]></Parameter>
+       <Parameter name="project"><![CDATA[kelowna-roads]]></Parameter>
+       <Parameter name="srs"><![CDATA[+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="lanes-fill" filter-mode="first">
+  <Rule>
+    <LineSymbolizer stroke-width="0.4" stroke="#ffffff" clip="false" />
+  </Rule>
+</Style>
+<Style name="lanes-casing" filter-mode="first">
+  <Rule>
+    <LineSymbolizer stroke-width="1.8" stroke="#000000" />
+  </Rule>
+</Style>
+<Layer name="lanes"
+  srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+    <StyleName>lanes-casing</StyleName>
+    <StyleName>lanes-fill</StyleName>
+    <Datasource>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+       <Parameter name="table"><![CDATA[kelowna.lanes]]></Parameter>
+       <Parameter name="key_field"><![CDATA[]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[geom]]></Parameter>
+       <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
+       <Parameter name="extent"><![CDATA[-13305104.050203,6409603.65462112,-13285702.9391701,6433340.44968675]]></Parameter>
+       <Parameter name="dbname"><![CDATA[road_overlays]]></Parameter>
+    </Datasource>
+  </Layer>
+
+</Map>
