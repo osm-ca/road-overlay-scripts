@@ -18,7 +18,7 @@ INSERT INTO expansions
     ('HWY','Highway'),
     ('CT','Court');
 
-CREATE OR REPLACE FUNCTION pg_temp_2.end_type(code double precision)
+CREATE OR REPLACE FUNCTION end_type(code double precision)
   RETURNS TEXT AS $$
   BEGIN
     CASE code
@@ -45,7 +45,7 @@ CREATE TABLE roads
         simple_expand(road_name,(SELECT hstore(array_agg(short_name),array_agg(long_name)) FROM expansions)) AS expanded_name,
         road_type, seg_type,
         gis_start AS start_addr, gis_end AS end_addr, odd_side,
-        pg_temp_2.end_type(frm_id) AS from_end, pg_temp_2.end_type(to_id) AS to_end
+        end_type(frm_id) AS from_end, pg_temp_2.end_type(to_id) AS to_end
       FROM roads_new
       ORDER BY ST_GeoHash(ST_Transform(geom,4326));
 
